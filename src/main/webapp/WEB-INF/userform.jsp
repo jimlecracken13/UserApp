@@ -29,9 +29,9 @@
             <input type="email" id="email" name="email">
             <input type="submit" value="Envoyer">
         </form>
-        <c:if test="${message != null}">
+        <c:if test="${!empty response}">
             <p>
-                <c:out value="${message}" />
+                <c:out value="${response}" />
             </p>
         </c:if>
     </body>

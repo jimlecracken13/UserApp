@@ -92,6 +92,7 @@ public class UserServlet extends HttpServlet {
         }
         else
         {
+            System.out.println("ici");
             request.setAttribute("response", "Remplissez tous les champs");
             this.getServletContext()
                     .getRequestDispatcher("/WEB-INF/userform.jsp")

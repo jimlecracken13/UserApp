@@ -1,0 +1,6 @@
+servlet/UserServlet.class
+com/naankata/userapp/resources/JakartaEE10Resource.class
+com/naankata/userapp/JakartaRestConfiguration.class
+model/User.class
+filter/requestFilter.class
+servlet/FormServlet.class

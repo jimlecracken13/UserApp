@@ -32,8 +32,6 @@ public class UserServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,7 +44,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -57,53 +55,58 @@ public class UserServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     @Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        try{
+
+        try {
             //on recupère les valeurs des champs
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String email = request.getParameter("email");
-        //validation des données
-        if(!nom.isBlank() && !prenom.isBlank() && !email.isBlank())
-        {
-            //creer une instance de user
-        User user = new User(nom, prenom, email);
-        //stocker l'objet crée dans une session
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        //liste pour recupérer la liste des utilisateurs
-        List<User> listUser = (List<User>)request
-                .getServletContext()
-                .getAttribute("listUser");
-       if(listUser==null)
-       {
-           listUser = new ArrayList<>(); 
-           request.getServletContext().setAttribute("listUser", listUser);
-       }
-        listUser.add(user);
-        
-        //rediriger l'utilisateur vers la page détails
-        this.getServletContext()
-                .getRequestDispatcher("/WEB-INF/userdetails.jsp")
-                .forward(request, response);
-        }
-        else
-        {
-            System.out.println("ici");
-            request.setAttribute("response", "Remplissez tous les champs");
-            this.getServletContext()
-                    .getRequestDispatcher("/WEB-INF/userform.jsp")
-                    .forward(request, response);
-        }
-        }catch(Exception e)
-        {
+            String nom = request.getParameter("nom");
+            String prenom = request.getParameter("prenom");
+            String email = request.getParameter("email");
+
+            //validation des données
+            if (!nom.isBlank() && !prenom.isBlank() && !email.isBlank()) {
+                //creer une instance de user
+                User user = new User(nom, prenom, email);
+                //stocker l'objet crée dans une session
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                //liste pour recupérer la liste des utilisateurs
+                List<User> listUser = (List<User>) request
+                        .getServletContext()
+                        .getAttribute("listUser");
+                if (listUser == null) {
+                    listUser = new ArrayList<>();
+                    request.getServletContext().setAttribute("listUser", listUser);
+                }
+                //verifier si le user n'est pas déjà dans la liste
+                if (listUser.contains(user)) {
+                    //renvoyer un message sur la page du formulaire
+                    /*request.setAttribute("message", "Vous êtes déjà inscrit");
+                    this.getServletContext()
+                            .getRequestDispatcher("/WEB-INF/userform.jsp")
+                            .forward(request, response);*/
+                    session.setAttribute("message", "Utilisateur déjà présent");
+                    response.sendRedirect("/form"); // ou l’URL de ta page formulaire
+
+                } else {
+                    System.out.print("Je suis dans le sinon");
+                    listUser.add(user);
+                    //rediriger l'utilisateur vers la page détails
+                    this.getServletContext()
+                            .getRequestDispatcher("/WEB-INF/userdetails.jsp")
+                            .forward(request, response);
+                }
+            } else {
+                 request.getSession().setAttribute("reponse", "Remplissez tous les champs");
+                response.sendRedirect("/form");
+            }
+        } catch (Exception e) {
             String message = "Une erreur est survenur lors du traitement, "
                     + "du formulaire/ Veillez reessayer";
-            request.setAttribute("message",message);
-            
+            request.setAttribute("message", message);
+
             //on envois vers la page error
             this.getServletContext()
                     .getRequestDispatcher("/WEB-INF/error.jsp")
@@ -111,8 +114,7 @@ public class UserServlet extends HttpServlet {
             //message console
             e.printStackTrace();
         }
-        
-        
+
     }
 
     /**

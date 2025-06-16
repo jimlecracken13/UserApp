@@ -31,7 +31,7 @@ public class requestFilter implements Filter{
             throws IOException, ServletException {
          //on récuère la requête 
         HttpServletRequest req = (HttpServletRequest) request;
-        System.out.println("👉Requête interceptée : " + req.getRequestURI());
+        System.out.println("Requête interceptée : " + req.getRequestURI());
         chain.doFilter(request, response);
     }
     @Override

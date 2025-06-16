@@ -14,6 +14,7 @@
     </head>
     <body>
         <p> Oups! <c:out value="${message}" /></p>
+        <c:out value="${exception.getMessage()}"/>
         <a href="/form">Retour au formulaire</a>
     </body>
 </html>

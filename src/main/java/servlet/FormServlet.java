@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 /**
  *
  * @author djim
@@ -45,7 +44,6 @@ public class FormServlet extends HttpServlet {
             out.println("</html>");
         }
     }*/
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -55,14 +53,24 @@ public class FormServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            this.getServletContext()
+        String message = (String) request.getSession().getAttribute("message");
+        request.setAttribute("message", message);
+        
+        
+        String reponse = (String) request.getSession().getAttribute("reponse");
+        request.setAttribute("reponse", reponse);
+        
+        request.getSession().removeAttribute("reponse");
+        request.getSession().removeAttribute("message");
+        
+        this.getServletContext()
                 .getRequestDispatcher("/WEB-INF/userform.jsp")
                 .forward(request, response);
-        }
-    
+
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -75,7 +83,7 @@ public class FormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**

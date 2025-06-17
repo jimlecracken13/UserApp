@@ -12,7 +12,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Form</title>
         <style>
-
+            body{
+                background-color: #8caba0;
+            }
             h1{
                 text-align: center;
             }
@@ -28,10 +30,11 @@
                 border: 2px solid black;
                 margin-left: 25%;
                 border-radius: 10px;
+                box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
             }
             form div
             {
-                margin: 5%;
+                margin: 3%;
                 width: 50%;
                 display: flex;
                 flex-direction: row;
@@ -40,21 +43,34 @@
             }
             form div label
             {
-                width: 10%;
+                width: 20%;
+                font-weight: bold;
+                font-family: sans-serif;
             }
             form div input
             {
                 margin-left: 20%;
-                width: 60%;
+                width: 65%;
+                height: 20px;
+                border-radius: 15px;
+                transition: box-shadow 0.3s ease;
+            }
+            form div input:focus {
+                outline: none;
+                box-shadow: 0 0 5px #666;
             }
             form input[type="submit"]
             {
-                border-radius: 4px;
-                width: 150px;
+                border-radius: 10px;
+                width: 165px;
                 height: 30px;
                 color: white;
                 background:#131417;
+                margin-top: 20px;
                 margin-bottom: 25px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.4s ease, transform 0.3s ease;
             }
             #message
             {
@@ -63,17 +79,27 @@
                 width: 50%;
                 border-color: red;
                 text-align: center;
+                padding: 5px;
+                font-size: 1.1em;
+                font-weight: bold;
+                border-radius: 15px;
+                box-shadow: 2px 1.5px 2px rgba(0.10,0.2,0,0.15);
+                background-color: white;
             }
             #exist
             {
                 width: 100%;
-                border: 2px solid red;
+                border: 1px solid red;
                 text-align: center;
+                border-radius: 15px;
+                box-shadow: 2px 0px 2px #131417;
+                background-color: white;
             }
             form input[type="submit"]:hover
             {
-                background-color: black;
-                
+                background-color:activeborder;
+
+                transform: scale(1.05);
             }
         </style>
     </head>
@@ -108,7 +134,7 @@
                 <input type="email" id="email" name="email">  
             </div>
             <input type="submit" value="Envoyer">
-                   
+
         </form>
         <c:if test="${not empty reponse}">
             <p id="message">

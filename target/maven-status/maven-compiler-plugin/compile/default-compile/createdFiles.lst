@@ -1,6 +1,0 @@
-servlet\UserServlet.class
-com\naankata\userapp\resources\JakartaEE10Resource.class
-servlet\FormServlet.class
-com\naankata\userapp\JakartaRestConfiguration.class
-filter\requestFilter.class
-model\User.class

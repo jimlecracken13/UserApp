@@ -16,9 +16,16 @@
                 background: linear-gradient(90deg, rgba(140, 171, 160, 1) 20%, rgba(177, 204, 189, 1) 52%, rgba(204, 203, 194, 1) 92%);
             }
             h1{
-                background: whitesmoke;
+                background: white;
                 text-align: center;
-                width: 200px;
+                width: 45%;
+                padding: 10px;
+                border: 1px solid black;
+                border-radius: 10px;
+                box-shadow: 4px 4px 4px rgba(0,0,0,0.15);
+            }
+            p{
+                font-size: 1.8em;
             }
         </style>
     </head>

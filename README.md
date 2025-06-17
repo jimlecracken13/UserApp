@@ -68,7 +68,7 @@ Elle doit afficher un message d’erreur clair si une exception se produit dans 
 
 
 
-7. Mettre en place un filtre Servlet 
+# 7. Mettre en place un filtre Servlet 
 Ce filtre doit intercepter toutes les requêtes
 
 

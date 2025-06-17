@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Form</title>
         <style>
-            
+
             h1{
                 text-align: center;
             }
@@ -23,11 +23,11 @@
                 align-items: center;
                 align-content: center;
                 padding: 5px;
-                background-color:whitesmoke;
+                background: linear-gradient(90deg, rgba(140, 171, 160, 1) 20%, rgba(177, 204, 189, 1) 52%, rgba(204, 203, 194, 1) 92%);
                 width: 50%;
                 border: 2px solid black;
                 margin-left: 25%;
-                
+                border-radius: 10px;
             }
             form div
             {
@@ -37,8 +37,6 @@
                 flex-direction: row;
                 align-content: flex-end;
                 align-items: center;
-            
-                
             }
             form div label
             {
@@ -55,7 +53,7 @@
                 width: 150px;
                 height: 30px;
                 color: white;
-                background: black;
+                background:#131417;
             }
             #message
             {
@@ -63,25 +61,31 @@
                 border: 2px black solid;
                 width: 50%;
                 border-color: red;
+                text-align: center;
             }
             #exist
             {
                 width: 100%;
                 border: 2px solid red;
+                text-align: center;
+            }
+            form input[type="submit"]:hover
+            {
+                background-color: black;
             }
         </style>
     </head>
     <body>
 
         <h1>Bienvenue !</h1>
-        
+
         <form method="post" action="/userdetails">
             <c:if test="${not empty message}">
-                
+
                 <div >
                     <label id="exist"> <c:out value="${message}" /> </label>
                 </div>
-               
+
             </c:if>
             <div>
                 <label for="nom">
@@ -108,7 +112,7 @@
             <p id="message">
                 <c:out value="${reponse}" />
             </p>
-            
+
         </c:if>
     </body>
 </html>

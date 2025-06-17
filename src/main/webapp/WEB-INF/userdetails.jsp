@@ -16,6 +16,8 @@
         <style>
             body{
                 display: flex;
+                background: #8caba0;
+                background: linear-gradient(90deg, rgba(140, 171, 160, 1) 20%, rgba(177, 204, 189, 1) 52%, rgba(204, 203, 194, 1) 92%);
                 flex-direction: column;
                 align-content: center;
                 align-items: center;
@@ -28,19 +30,24 @@
                 width: 70%;
                 padding-left: 2%;
             }
+            h3{
+                font-size:1.9em;
+                color: #00695c;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            }
         </style>
     </head>
     <body>
         <h3>Bienvenue <c:out value="${user.prenom}" /> - 
-        <c:out value="${user.nom}" /></h3>
-        <c:forEach items="${listUser}" var="user" varStatus="status">
-        <div>
-           <h4><c:out value="${status.count}" /></h4>
-        <p>Nom:  <c:out value="${user.nom}" /></p>
-        <p>Prenom: <c:out value="${user.prenom}" /></p>
-        <p>Email: <c:out value="${user.email}" /></p> 
-        </div>
-        
+            <c:out value="${user.nom}" /></h3>
+            <c:forEach items="${listUser}" var="user" varStatus="status">
+            <div>
+                <h4><c:out value="${status.count}" /></h4>
+                <p>Nom:  <c:out value="${user.nom}" /></p>
+                <p>Prenom: <c:out value="${user.prenom}" /></p>
+                <p>Email: <c:out value="${user.email}" /></p> 
+            </div>
+
         </c:forEach>
     </body>
 </html>

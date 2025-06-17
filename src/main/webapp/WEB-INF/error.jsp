@@ -13,7 +13,7 @@
         <title>Page d'erreur</title>
     </head>
     <body>
-        <p> Oups! <c:out value="${message}" /></p>
+        <p> Oups! Une erreur est survenue<c:out value="${message}" /></p>
         <c:out value="${exception.getMessage()}"/>
         <a href="/form">Retour au formulaire</a>
     </body>

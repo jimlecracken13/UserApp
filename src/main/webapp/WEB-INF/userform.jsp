@@ -54,6 +54,7 @@
                 height: 30px;
                 color: white;
                 background:#131417;
+                margin-bottom: 25px;
             }
             #message
             {
@@ -72,6 +73,7 @@
             form input[type="submit"]:hover
             {
                 background-color: black;
+                
             }
         </style>
     </head>

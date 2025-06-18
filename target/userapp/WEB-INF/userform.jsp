@@ -134,7 +134,7 @@
                 <input type="email" id="email" name="email">  
             </div>
             <input type="submit" value="Envoyer">
-
+            
         </form>
         <c:if test="${not empty reponse}">
             <p id="message">

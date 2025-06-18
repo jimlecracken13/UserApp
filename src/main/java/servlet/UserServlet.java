@@ -10,9 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
@@ -45,6 +43,24 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         //liste pour recupérer la liste des utilisateurs
+                List<User> listUser = (List<User>) request
+                        .getServletContext()
+                        .getAttribute("listUser");
+                if (listUser == null) {
+                    listUser = new ArrayList<>();
+                    request.getServletContext().setAttribute("listUser", listUser);
+                    System.out.println("Redirection");
+                    this.getServletContext()
+                            .getRequestDispatcher("/WEB-INF/userform.jsp")
+                            .forward(request, response);
+                }
+                else
+                {
+                    this.getServletContext()
+                            .getRequestDispatcher("/WEB-INF/userdetails.jsp")
+                            .forward(request, response);
+                }
 
     }
 
@@ -85,6 +101,10 @@ public class UserServlet extends HttpServlet {
                 //verifier si le user n'est pas déjà dans la liste
                 if (listUser.contains(user)) {
                     //renvoyer un message sur la page du formulaire
+                    /*request.setAttribute("message", "Vous êtes déjà inscrit");
+                    this.getServletContext()
+                            .getRequestDispatcher("/WEB-INF/userform.jsp")
+                            .forward(request, response);*/
                     session.setAttribute("message", "Utilisateur déjà inscrit");
                     response.sendRedirect("/form"); // ou l’URL de ta page formulaire
 

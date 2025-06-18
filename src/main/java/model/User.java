@@ -34,19 +34,8 @@ public class User {
     {
         return prenom;
     }
-    //setters
-    public void setNom(String nom)
-    {
-        this.nom = nom;
-    }
-    public void setPrenom(String prenom)
-    {
-        this.prenom = prenom;
-    }
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
+    
+   
     @Override
 public boolean equals(Object o) {
     if (this == o) return true;

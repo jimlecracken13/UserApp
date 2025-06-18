@@ -56,6 +56,21 @@
                 margin-bottom: 1rem; /* Espacement sous le titre */
                 font-weight: 500; /* Poids modéré pour modernité */
             }
+             .back-link {
+                display: inline-block;
+                margin-top: 25px;
+                padding: 10px 25px;
+                background-color: #3498db;
+                color: white;
+                text-decoration: none;
+                border-radius: 6px;
+                transition: background-color 0.3s ease, transform 0.2s;
+            }
+
+            .back-link:hover {
+                background-color: #2980b9;
+                transform: scale(1.05);
+            }
         </style>
     </head>
     <body>
@@ -68,7 +83,8 @@
                 <p>Prenom: <c:out value="${user.prenom}" /></p>
                 <p>Email: <c:out value="${user.email}" /></p> 
             </div>
-
+            
         </c:forEach>
+            <a class="back-link" href="/form">Formulaire</a>
     </body>
 </html>

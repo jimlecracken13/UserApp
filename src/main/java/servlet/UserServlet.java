@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -64,11 +65,12 @@ public class UserServlet extends HttpServlet {
             String nom = request.getParameter("nom");
             String prenom = request.getParameter("prenom");
             String email = request.getParameter("email");
-
+            //int resultat = 10/0;
             //validation des données
             if (!nom.isBlank() && !prenom.isBlank() && !email.isBlank()) {
                 //creer une instance de user
                 User user = new User(nom, prenom, email);
+               
                 //stocker l'objet crée dans une session
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
@@ -83,15 +85,11 @@ public class UserServlet extends HttpServlet {
                 //verifier si le user n'est pas déjà dans la liste
                 if (listUser.contains(user)) {
                     //renvoyer un message sur la page du formulaire
-                    /*request.setAttribute("message", "Vous êtes déjà inscrit");
-                    this.getServletContext()
-                            .getRequestDispatcher("/WEB-INF/userform.jsp")
-                            .forward(request, response);*/
-                    session.setAttribute("message", "Utilisateur déjà présent");
+                    session.setAttribute("message", "Utilisateur déjà inscrit");
                     response.sendRedirect("/form"); // ou l’URL de ta page formulaire
 
                 } else {
-                    System.out.print("Je suis dans le sinon");
+                    
                     listUser.add(user);
                     //rediriger l'utilisateur vers la page détails
                     this.getServletContext()
@@ -103,8 +101,7 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect("/form");
             }
         } catch (Exception e) {
-            String message = "Une erreur est survenur lors du traitement, "
-                    + "du formulaire/ Veillez reessayer";
+            String message = e.getMessage();
             request.setAttribute("message", message);
 
             //on envois vers la page error
